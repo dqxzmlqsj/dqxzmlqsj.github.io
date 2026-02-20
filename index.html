@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 张宜轩 - 个人求职主页</title>
+    <style>
+        /* 全局样式重置，保证不同浏览器显示一致 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 页面背景和整体布局 */
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 容器：让内容居中，限制宽度 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 头部：个人基础信息 */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 头像样式 */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #eee;
+        }
+
+        /* 姓名样式 */
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        /* 求职意向样式 */
+        .job-intention {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* 联系方式样式 */
+        .contact {
+            font-size: 1rem;
+            color: #888;
+        }
+
+        /* 每个模块的通用样式 */
+        .section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 模块标题样式 */
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* 技能模块样式 */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-item {
+            background-color: #e3f2fd;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #2196f3;
+            font-size: 1rem;
+        }
+
+        /* 项目经历样式 */
+        .project-item {
+            margin-bottom: 25px;
+        }
+
+        .project-item h3 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .project-item p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .project-item a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .project-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* 教育背景样式优化 */
+        .edu-item {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* 联系方式样式优化 */
+        .contact-item {
+            margin-bottom: 8px;
+        }
+
+        /* 响应式：手机端适配 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部：个人基础信息 -->
+        <header>
+            <!-- 替换成你的头像链接（可以用免费图床如https://imgchr.com/上传后获取链接） -->
+            <img src="https://s41.ax1x.com/2026/02/20/pZXsrfs.jpg" alt="你的头像" class="avatar">
+            <h1>张宜轩</h1>
+            <p class="job-intention">求职意向：新媒体运营、内容运营、产品营销</p>
+            <p class="contact">邮箱：15734298188@163.com | 电话：15734298188 | 微信：dqxzmlqsj</p>
+        </header>
+
+        <!-- 关于我 -->
+        <section class="section">
+            <h2>关于我</h2>
+            <p>大学期间主修土木工程，具备扎实的计算基础和分析经验。</p>
+            <p>热爱新媒体运营和内容创作，曾在校内外多个项目中担任内容策划和运营角色，积累了丰富的实战经验。</p>
+            <p>具备良好的沟通能力和团队协作精神，能够快速适应新环境并高效完成任务。</p>
+        </section>
+
+        <!-- 个人技能 -->
+        <section class="section">
+            <h2>个人技能</h2>
+            <div class="skills">
+                <!-- 替换成你的技能，按熟练度排序 -->
+                <div class="skill-item">公众号运营</div>
+                <div class="skill-item">小红书运营</div>
+                <div class="skill-item">135编辑器</div>
+                <div class="skill-item">文案撰写</div>
+                <div class="skill-item">Microsoft</div>
+                <div class="skill-item">剪映</div>
+                <div class="skill-item">主持</div>
+            </div>
+        </section>
+
+        <!-- 项目经历（核心模块） -->
+        <section class="section">
+            <h2>项目经历</h2>
+            <div class="project-item">
+                <h3>项目1：个人求职主页（此网页）</h3>
+                <p>技术栈：HTML+CSS+JavaScript</p>
+                <p>项目描述：从零搭建个人求职展示网页，包含个人信息、技能、项目等模块，适配手机端，风格简洁易读。</p>
+                <p>项目链接：<a href="https://你的项目地址.com" target="_blank">https://你的项目地址.com</a>（没有就删掉这行）</p>
+            </div>
+            <div class="project-item">
+                <h3>项目2：黑龙江省共青团小红书账号（等待启动中）</h3>
+                <p>起号帖子：暂时没有哈</p>
+                <p>项目描述：实现了黑龙江省共青团小红书账号的运营规划与内容创作，为后续正式运营打下基础。</p>
+                <p>项目链接：<a href="https://github.com/你的用户名/项目名" target="_blank">GitHub地址</a></p>
+            </div>
+        </section>
+
+        <!-- 教育背景（修正重复问题，优化排版） -->
+        <section class="section">
+            <h2>教育背景</h2>
+            <div class="edu-item">
+                <strong>2021.09 - 2025.06</strong> | 东北林业大学 | 土木工程（道路与桥梁工程） | 本科 | 排名：50/206<br>
+                证书/获奖：大学英语六级、华语辩论世界杯哈尔滨赛区冠军、东北林业大学文生杯辩论比赛冠军
+            </div>
+            <div class="edu-item">
+                <strong>2025.09 - 至今</strong> | 东北林业大学 | 土木工程（防灾减灾工程） | 硕士 | 排名：7/32<br>
+                获奖/证书：教师资格证（高中数学）（备考中）
+            </div>
+        </section>
+
+        <!-- 联系方式（修正排版，优化样式） -->
+        <section class="section">
+            <h2>联系方式</h2>
+            <div class="contact-item">📧 邮箱：15734298188@163.com</div>
+            <div class="contact-item">📱 电话：15734298188</div>
+            <div class="contact-item">💬 微信：dqxzmlqsj</div>
+            <div class="contact-item">💻 GitHub：<a href="https://github.com/你的用户名" target="_blank">https://github.com/你的用户名</a>（没有就注册一个，放上去加分）</div>
+        </section>
+    </div>
+
+    <!-- 简单交互：页面加载完成后提示 -->
+    <script>
+        window.onload = function() {
+            console.log("个人求职网页加载完成！");
+            // 可以添加简单交互，比如点击头像换颜色（小白可选忽略）
+            const avatar = document.querySelector('.avatar');
+            avatar.addEventListener('click', function() {
+                this.style.borderColor = '#2196f3';
+                setTimeout(() => {
+                    this.style.borderColor = '#eee';
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html>
