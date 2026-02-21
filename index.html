@@ -45,6 +45,8 @@
             object-fit: cover;
             margin-bottom: 20px;
             border: 5px solid #eee;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
         }
 
         /* 姓名样式 */
@@ -98,6 +100,21 @@
             border-radius: 20px;
             color: #2196f3;
             font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        /* 新增：可点击技能项的样式 */
+        .skill-item a {
+            color: #2196f3;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .skill-item:hover {
+            background-color: #bbdefb;
+            cursor: pointer;
         }
 
         /* 项目经历样式 */
@@ -125,15 +142,74 @@
             text-decoration: underline;
         }
 
-        /* 教育背景样式优化 */
-        .edu-item {
-            margin-bottom: 15px;
+        /* 时间轴通用样式（教育背景） */
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        /* 时间轴竖线 */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #e3f2fd;
+            border-radius: 2px;
+        }
+
+        /* 时间轴节点样式 */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
             line-height: 1.8;
+        }
+
+        /* 时间轴圆点 */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #2196f3;
+            border: 4px solid #e3f2fd;
+            z-index: 1;
+        }
+
+        /* 时间轴时间样式 */
+        .timeline-time {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        /* 时间轴内容样式 */
+        .timeline-content {
+            color: #666;
         }
 
         /* 联系方式样式优化 */
         .contact-item {
             margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .contact-item a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
         }
 
         /* 响应式：手机端适配 */
@@ -147,6 +223,10 @@
             .section {
                 padding: 20px;
             }
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
@@ -154,8 +234,7 @@
     <div class="container">
         <!-- 头部：个人基础信息 -->
         <header>
-            <!-- 替换成你的头像链接（可以用免费图床如https://imgchr.com/上传后获取链接） -->
-            <img src="https://s41.ax1x.com/2026/02/20/pZXsrfs.jpg" alt="你的头像" class="avatar">
+            <img src="https://s41.ax1x.com/2026/02/20/pZXsrfs.jpg" alt="张宜轩头像" class="avatar">
             <h1>张宜轩</h1>
             <p class="job-intention">求职意向：新媒体运营、内容运营、产品营销</p>
             <p class="contact">邮箱：15734298188@163.com | 电话：15734298188 | 微信：dqxzmlqsj</p>
@@ -169,66 +248,74 @@
             <p>具备良好的沟通能力和团队协作精神，能够快速适应新环境并高效完成任务。</p>
         </section>
 
-        <!-- 个人技能 -->
+        <!-- 个人技能（核心修改区） -->
         <section class="section">
             <h2>个人技能</h2>
             <div class="skills">
-                <!-- 替换成你的技能，按熟练度排序 -->
-                <div class="skill-item">公众号运营</div>
+                <!-- 公众号运营标签添加跳转链接，替换下方 YOUR_ARTICLE_LINK 为实际公众号文章链接 -->
+                <div class="skill-item">
+                    <a href="YOUR_ARTICLE_LINK" target="_blank">公众号运营</a>
+                </div>
                 <div class="skill-item">小红书运营</div>
                 <div class="skill-item">135编辑器</div>
                 <div class="skill-item">文案撰写</div>
-                <div class="skill-item">Microsoft</div>
+                <div class="skill-item">Microsoft Office</div>
                 <div class="skill-item">剪映</div>
                 <div class="skill-item">主持</div>
             </div>
         </section>
 
-        <!-- 项目经历（核心模块） -->
+        <!-- 项目经历 -->
         <section class="section">
             <h2>项目经历</h2>
             <div class="project-item">
                 <h3>项目1：个人求职主页（此网页）</h3>
                 <p>技术栈：HTML+CSS+JavaScript</p>
                 <p>项目描述：从零搭建个人求职展示网页，包含个人信息、技能、项目等模块，适配手机端，风格简洁易读。</p>
-                <p>项目链接：<a href="https://你的项目地址.com" target="_blank">https://你的项目地址.com</a>（没有就删掉这行）</p>
+                <p>项目链接：<a href="https://dqxzmlqsj.github.io" target="_blank">https://dqxzmlqsj.github.io</a></p>
             </div>
             <div class="project-item">
-                <h3>项目2：黑龙江省共青团小红书账号（等待启动中）</h3>
-                <p>起号帖子：暂时没有哈</p>
-                <p>项目描述：实现了黑龙江省共青团小红书账号的运营规划与内容创作，为后续正式运营打下基础。</p>
-                <p>项目链接：<a href="https://github.com/你的用户名/项目名" target="_blank">GitHub地址</a></p>
+                <h3>项目2：黑龙江省共青团小红书账号（筹备中）</h3>
+                <p>项目描述：完成黑龙江省共青团小红书账号的运营规划方案，包含内容定位、选题方向、发布节奏等核心模块，为账号正式启动奠定基础。</p>
+                <p>项目亮点：结合政务类账号特性，设计了年轻化、接地气的内容风格，兼顾官方调性与用户喜好。</p>
             </div>
         </section>
 
-        <!-- 教育背景（修正重复问题，优化排版） -->
+        <!-- 教育背景（时间轴版） -->
         <section class="section">
             <h2>教育背景</h2>
-            <div class="edu-item">
-                <strong>2021.09 - 2025.06</strong> | 东北林业大学 | 土木工程（道路与桥梁工程） | 本科 | 排名：50/206<br>
-                证书/获奖：大学英语六级、华语辩论世界杯哈尔滨赛区冠军、东北林业大学文生杯辩论比赛冠军
-            </div>
-            <div class="edu-item">
-                <strong>2025.09 - 至今</strong> | 东北林业大学 | 土木工程（防灾减灾工程） | 硕士 | 排名：7/32<br>
-                获奖/证书：教师资格证（高中数学）（备考中）
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">2021.09 - 2025.06</div>
+                    <div class="timeline-content">
+                        东北林业大学 | 土木工程（道路与桥梁工程） | 本科 | 排名：50/206<br>
+                        证书/获奖：大学英语六级、华语辩论世界杯哈尔滨赛区冠军、东北林业大学文生杯辩论比赛冠军
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">2025.09 - 至今</div>
+                    <div class="timeline-content">
+                        东北林业大学 | 土木工程（防灾减灾工程） | 硕士 | 排名：7/32<br>
+                        备考证书：高中数学教师资格证
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 联系方式（修正排版，优化样式） -->
+        <!-- 联系方式 -->
         <section class="section">
             <h2>联系方式</h2>
             <div class="contact-item">📧 邮箱：15734298188@163.com</div>
             <div class="contact-item">📱 电话：15734298188</div>
             <div class="contact-item">💬 微信：dqxzmlqsj</div>
-            <div class="contact-item">💻 GitHub：<a href="https://github.com/dqxzmlqsj" target="_blank">https://github.com/dqxzmlqsj</a>（没有就注册一个，放上去加分）</div>
+            <div class="contact-item">💻 GitHub：<a href="https://github.com/dqxzmlqsj" target="_blank">https://github.com/dqxzmlqsj</a></div>
         </section>
     </div>
 
-    <!-- 简单交互：页面加载完成后提示 -->
+    <!-- 简单交互：点击头像换边框颜色 -->
     <script>
         window.onload = function() {
             console.log("个人求职网页加载完成！");
-            // 可以添加简单交互，比如点击头像换颜色（小白可选忽略）
             const avatar = document.querySelector('.avatar');
             avatar.addEventListener('click', function() {
                 this.style.borderColor = '#2196f3';
