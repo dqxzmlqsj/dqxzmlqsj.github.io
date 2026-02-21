@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张宜轩 - 公众号文章作品集</title>
+    <!-- 复用求职主页的样式，保证视觉统一 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .article-list {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .article-item {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .article-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .article-item h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .article-item a {
+            color: #2196f3;
+            text-decoration: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .article-item a:hover {
+            text-decoration: underline;
+        }
+        .article-item p {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        /* 返回按钮样式 */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 20px;
+            background-color: #e3f2fd;
+            color: #2196f3;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #bbdefb;
+        }
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .article-list {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回求职主页按钮 -->
+        <a href="index.html" class="back-btn">← 返回个人求职主页</a>
+        
+        <!-- 页面标题 -->
+        <div class="header">
+            <h1>公众号文章作品集</h1>
+            <p>以下是我过往创作/运营的公众号文章，点击标题可查看原文</p>
+        </div>
+
+        <!-- 公众号文章列表 -->
+        <div class="article-list">
+            <!-- 文章1：替换成你的实际信息 -->
+            <div class="article-item">
+                <h3>文章标题1：XXX（比如“政务类公众号内容创作技巧”）</h3>
+                <a href="https://你的公众号文章1链接" target="_blank">🔗 点击查看原文</a>
+                <p>发布时间：202X.XX.XX | 发布平台：XXX公众号 | 阅读量：XXX</p>
+            </div>
+
+            <!-- 文章2：按需添加/删除 -->
+            <div class="article-item">
+                <h3>文章标题2：XXX（比如“新媒体运营选题思路分享”）</h3>
+                <a href="https://你的公众号文章2链接" target="_blank">🔗 点击查看原文</a>
+                <p>发布时间：202X.XX.XX | 发布平台：XXX公众号 | 阅读量：XXX</p>
+            </div>
+
+            <!-- 更多文章：复制上面的.article-item模块即可 -->
+        </div>
+    </div>
+</body>
+</html>
