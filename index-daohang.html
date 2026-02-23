@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 张宜轩 - 个人主页</title>
+    <style>
+        /* 全局样式重置，保证不同浏览器显示一致 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 页面背景和整体布局 */
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 新增：大厂风格导航栏样式 */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .navbar-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* 导航栏Logo样式 - 核心修改 */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            padding: 8px 0; /* 调整内边距适配logo */
+            height: 60px; /* 固定导航栏高度 */
+        }
+
+        .logo-img {
+            width: 44px; /* logo宽度 */
+            height: 44px; /* logo高度 */
+            border-radius: 8px; /* 轻微圆角，更美观 */
+            object-fit: cover; /* 保证图片比例 */
+            margin-right: 8px; /* 与文字间距 */
+            cursor: pointer;
+            transition: transform 0.3s ease; /* 悬停动画 */
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05); /* 悬停轻微放大 */
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 16px 0;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #2196f3;
+        }
+
+        /* 导航栏激活态下划线 */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #2196f3;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 移动端导航栏汉堡按钮 */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            padding: 16px 0;
+        }
+
+        /* 容器：让内容居中，限制宽度 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 头部：个人基础信息 */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 头像样式 */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #eee;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        /* 姓名样式 */
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        /* 求职意向样式 */
+        .job-intention {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8; /* 新增：增加行高，提升可读性 */
+        }
+
+        /* 联系方式样式 */
+        .contact {
+            font-size: 1rem;
+            color: #888;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column; /* 移动端默认竖排 */
+            gap: 8px; /* 新增：行间距 */
+            align-items: center; /* 垂直居中 */
+            justify-content: center; /* 新增：水平居中（flex布局核心） */
+            width: 100%; /* 新增：占满父元素宽度，否则居中无效果 */
+        }
+
+        /* 新增：PC端联系方式横排显示 */
+        @media (min-width: 768px) {
+            .contact {
+                flex-direction: row;
+                gap: 15px; /* PC端横向间距 */
+            }
+        }
+
+        /* 每个模块的通用样式 */
+        .section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 模块标题样式 */
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* 技能模块样式 */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-item {
+            background-color: #e3f2fd;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #2196f3;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        /* 新增：可点击技能项的样式 */
+        .skill-item a {
+            color: #2196f3;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .skill-item:hover {
+            background-color: #bbdefb;
+            cursor: pointer;
+        }
+
+        /* 项目经历样式 */
+        .project-item {
+            margin-bottom: 25px;
+        }
+
+        .project-item h3 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .project-item p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .project-item a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .project-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* 时间轴通用样式（教育背景） */
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        /* 时间轴竖线 */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #e3f2fd;
+            border-radius: 2px;
+        }
+
+        /* 时间轴节点样式 */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+            line-height: 1.8;
+        }
+
+        /* 时间轴圆点 */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #2196f3;
+            border: 4px solid #e3f2fd;
+            z-index: 1;
+        }
+
+        /* 时间轴时间样式 */
+        .timeline-time {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        /* 时间轴内容样式 */
+        .timeline-content {
+            color: #666;
+        }
+
+        /* 联系方式样式优化 */
+        .contact-item {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .contact-item a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式：手机端适配 */
+        @media (max-width: 768px) {
+            /* 移动端导航栏样式 */
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                flex-direction: column;
+                background-color: #ffffff;
+                width: 100%;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: 0.3s;
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 0;
+                padding: 0 20px;
+            }
+
+            .nav-link {
+                padding: 12px 0;
+            }
+
+            /* 移动端logo文字隐藏，只显示图片 */
+            .logo-text {
+                display: none;
+            }
+
+            .logo-img {
+                margin-right: 0;
+            }
+
+            .container {
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .section {
+                padding: 20px;
+            }
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+            /* 新增：移动端求职意向和联系方式优化 */
+            .job-intention {
+                font-size: 1rem;
+                padding: 0 10px; /* 左右留白，避免贴边 */
+            }
+            .contact {
+                font-size: 0.9rem;
+                padding: 0 10px; /* 左右留白 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 新增：大厂风格导航栏（含logo） -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- 导航栏Logo区域 - 核心修改 -->
+            <div class="nav-logo">
+                <!-- 替换src为你的logo图片地址 -->
+                <img src="https://img2.nloln.de/file/BQACAgUAAyEGAASLVN5eAAIDZGmb-GCwJBk0yx-fIlf-EJX2oQU2AAINGwACP9PgVJ3Jx6kYkRStOgQ.jpg" alt="个人Logo" class="logo-img">
+                <span class="logo-text">张宜轩</span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">关于我</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#campus" class="nav-link">校园经历</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#internship" class="nav-link">实习经历</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#wechat" class="nav-link">公众号运营</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#xiaohongshu" class="nav-link">小红书运营</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">联系我</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about-page" class="nav-link">关于</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                ☰
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- 头部：个人基础信息 -->
+        <header>
+            <img src="https://img2.nloln.de/file/BQACAgUAAyEGAASLVN5eAAIDZGmb-GCwJBk0yx-fIlf-EJX2oQU2AAINGwACP9PgVJ3Jx6kYkRStOgQ.jpg" alt="张宜轩头像" class="avatar">
+            <h1>张宜轩</h1>
+            <p class="job-intention"> 方向：新媒体运营、产品营销</p>
+            <div class="contact">
+                <span>邮箱：15734298188@163.com</span>
+                <span>电话：15734298188</span>
+                <span>微信：dqxzmlqsj</span>
+            </div>
+        </header>
+
+        <!-- 关于我 -->
+        <section class="section" id="about">
+            <h2>关于我</h2>
+            <p>大学期间主修土木工程，具备扎实的计算基础和分析经验。</p>
+            <p>热爱新媒体运营和内容创作，曾在校内外多个项目中担任内容策划和运营角色，积累了丰富的实战经验。</p>
+            <p>具备良好的沟通能力和团队协作精神，能够快速适应新环境并高效完成任务。</p>
+        </section>
+
+        <!-- 校园经历（原教育背景修改） -->
+        <section class="section" id="campus">
+            <h2>校园经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">2021.09 - 2025.06</div>
+                    <div class="timeline-content">
+                        东北林业大学 | 土木工程（道路与桥梁工程） | 本科 | 排名：50/206<br>
+                        证书/获奖：大学英语六级、华语辩论世界杯哈尔滨赛区冠军、东北林业大学文生杯辩论比赛冠军<br>
+                        校园活动：辩论队主力成员、校园活动主持人、街舞社团核心成员
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">2025.09 - 至今</div>
+                    <div class="timeline-content">
+                        东北林业大学 | 土木工程（防灾减灾工程） | 硕士 | 排名：7/32<br>
+                        备考证书：高中数学教师资格证<br>
+                        研究方向：防灾减灾工程相关研究，兼顾新媒体运营技能提升
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实习经历（新增模块） -->
+        <section class="section" id="internship">
+            <h2>实习经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">2022.07-2022.08</div>
+                    <div class="timeline-content">
+                        辽宁景华工程咨询有限公司<br>外业测量实习生 | 外业点位测量、内业数据处理<br>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">2025.01-2025.02</div>
+                    <div class="timeline-content">
+                        辽宁省鞍山市台安县共青团委员会<br>实习生 | 主题活动拍摄、公文撰写<br>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公众号运营（新增模块） -->
+        <section class="section" id="wechat">
+            <h2>公众号运营</h2>
+            <div class="project-item">
+                <h3>公众号运营能力</h3>
+                <p>内容策划：能够结合目标用户群体特征，制定符合公众号定位的内容选题和发布计划</p>
+                <p>文案创作：擅长撰写各类风格的公众号推文，包括科普类、情感类、营销类等</p>
+                <p>数据优化：熟悉公众号后台数据分析，能够根据阅读量、转发量、点赞量等数据优化内容方向</p>
+                <p>运营工具：熟练使用135编辑器等公众号编辑工具，掌握排版美化技巧</p>
+                <p>公众作品集：<a href="articles-gongzhonghaomanghe.html" target="_blank">公众号运营详情</a></p>
+            </div>
+        </section>
+
+        <!-- 小红书运营（新增模块） -->
+        <section class="section" id="xiaohongshu">
+            <h2>小红书运营</h2>
+            <div class="project-item">
+                <h3>个人美食账号</h3>
+                <p>账号定位：面向年轻人（18-24岁）的美食挖掘、分享与推荐</p>
+                <p>内容规划：制定选题方向，包括校内外美食、外卖攻略等板块。哈尔滨高校美食板块陆续产出</p>
+                <p>发布节奏：规划每日/每周发布频次，优化发布时间，提升内容曝光率</p>
+                <p>流量运营：熟悉小红书平台算法，原创标签 #小猪严选 浏览量7.1w+</p>
+                <p>小红书作品集：<a href="articles-xiaohongshu.html" target="_blank">丹青小猪的小红书运营详情</a></p>
+            </div>
+        </section>
+
+        <!-- 个人技能（保留原有） -->
+        <section class="section">
+            <h2>个人技能</h2>
+            <div class="skills">
+                <!-- 跳转至独立的公众号文章页面 -->
+                <div class="skill-item">
+                    <a href="articles-gongzhonghaomanghe.html" target="_blank">公众号运营</a>
+                </div>
+                <div class="skill-item">
+                    <a href="articles-xiaohongshu.html" target="_blank">小红书运营</a>
+                </div>
+                <div class="skill-item">
+                    <a href="articles-wengao.html" target="_blank">文稿撰写</a>
+                </div>
+                <div class="skill-item">剪辑</div>
+                <div class="skill-item">街舞</div>
+                <div class="skill-item">辩论</div>
+                <div class="skill-item">主持</div>
+            </div>
+        </section>
+
+        <!-- 项目经历（保留原有） -->
+        <section class="section">
+            <h2>项目经历</h2>
+            <div class="project-item">
+                <h3>项目1：个人求职主页（此网页）</h3>
+                <p>技术栈：HTML+CSS+JavaScript</p>
+                <p>项目描述：从零搭建个人展示网页，包含个人信息、技能、项目等模块，适配手机端，风格简洁易读。</p>
+                <p>项目链接：<a href="https://dqxzmlqsj.github.io" target="_blank">https://dqxzmlqsj.github.io</a></p>
+            </div>
+            <div class="project-item">
+                <h3>项目2：黑龙江省共青团小红书账号（筹备中）</h3>
+                <p>项目描述：完成黑龙江省共青团小红书账号的运营规划方案，包含内容定位、选题方向、发布节奏等核心模块，为账号正式启动奠定基础。</p>
+                <p>项目亮点：结合政务类账号特性，设计了年轻化、接地气的内容风格，兼顾官方调性与用户喜好。</p>
+            </div>
+        </section>
+
+        <!-- 联系方式 -->
+        <section class="section" id="contact">
+            <h2>联系方式</h2>
+            <div class="contact-item">📧 邮箱：15734298188@163.com</div>
+            <div class="contact-item">📱 电话：15734298188</div>
+            <div class="contact-item">💬 微信：dqxzmlqsj</div>
+            <div class="contact-item">💻 GitHub：<a href="https://github.com/dqxzmlqsj" target="_blank">https://github.com/dqxzmlqsj</a></div>
+        </section>
+
+        <!-- 关于页面（新增模块） -->
+        <section class="section" id="about-page">
+            <h2>关于</h2>
+            <p>此个人主页用于展示个人简历、技能和项目经历，旨在记录个人成长、探索每一种可能性。</p>
+            <p>网页技术栈：HTML + CSS + JavaScript，采用响应式设计，适配PC端和移动端。</p>
+            <p>最后更新时间：2026年2月23日</p>
+        </section>
+    </div>
+
+    <!-- 交互脚本：导航栏汉堡菜单 + 头像点击 + 平滑滚动 -->
+    <script>
+        window.onload = function() {
+            console.log("个人网页加载完成！");
+            
+            // 头像点击换边框颜色
+            const avatar = document.querySelector('.avatar');
+            avatar.addEventListener('click', function() {
+                this.style.borderColor = '#2196f3';
+                setTimeout(() => {
+                    this.style.borderColor = '#eee';
+                }, 1000);
+            });
+
+            // 移动端导航栏汉堡菜单交互
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                // 切换汉堡菜单图标
+                this.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // 导航链接点击关闭移动端菜单
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        hamburger.textContent = '☰';
+                    }
+                });
+            });
+
+            // 平滑滚动效果
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70, // 偏移量适配导航栏高度
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
